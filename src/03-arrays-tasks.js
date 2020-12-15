@@ -551,9 +551,10 @@ function group(array, keySelector, valueSelector) {
   const keys = array.map(keySelector)
     .filter((v, i, a) => a.indexOf(v) === i);
   return keys.reduce((s, v) => {
-    s[v] = array.filter((vv) => keySelector(vv) === v)
+    const temp = s;
+    temp[v] = array.filter((vv) => keySelector(vv) === v)
       .map((vv) => valueSelector(vv));
-    return s;
+    return temp;
   }, {});
 }
 
